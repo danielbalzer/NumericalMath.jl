@@ -3,7 +3,7 @@
 ##
 
 
-function trapz{Tx<:Number, Ty<:Number}(x::Vector{Tx}, y::Vector{Ty})
+function trapz(x::Vector{Tx}, y::Vector{Ty}) where {Tx<:Number, Ty<:Number}
     # Trapezoidal integration rule
     local n = length(x)
     if (length(y) != n)
@@ -34,7 +34,7 @@ function romberg(f::Function, a::Real, b::Real;
         sgn = -1.0
     end
 
-    local n::Int = 1, iter::Int = 0
+    local n::Int = 1; local iter::Int = 0
     I = zeros(maxit+1, maxit+1)
 
     err = 1.0
@@ -61,4 +61,3 @@ function romberg(f::Function, a::Real, b::Real;
 
      return I[1, iter+1], err
 end
-

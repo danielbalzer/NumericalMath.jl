@@ -3,8 +3,8 @@
 ##
 
 
-function interp1d{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::T;
-                           method::Symbol = :cubic)
+function interp1d(xi::Array{T,1}, yi::Array{T,1}, x::T;
+                           method::Symbol = :cubic) where {T<:Real}
     n = length(xi)
     if length(yi) != n
         error("Vectors 'xi', 'yi' must be of same length.")
@@ -22,7 +22,7 @@ function interp1d{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::T;
     else
         k = maximum(find(xi[1:(end-1)] .<= x))
     end
-    
+
     if method == :constant
         if k == 0; k = 1; end
         return yi[k]
@@ -35,7 +35,7 @@ function interp1d{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::T;
             end
         end
         return yi[k]
-        
+
     elseif method == :linear
         if k == 0; k = 1
         elseif k == n; k = n-1; end
@@ -55,8 +55,8 @@ function interp1d{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::T;
 end
 
 
-function interp1d{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::Array{T,1};
-                           method::Symbol = :cubic)
+function interp1d(xi::Array{T,1}, yi::Array{T,1}, x::Array{T,1};
+                           method::Symbol = :cubic) where {T<:Real}
     local m::Int = length(x)
     y = zeros(m)
     for i = 1:m
@@ -68,7 +68,7 @@ end
 
 #-- Moler: Piecewise Cubic Hermitean Interpolation Polynomials
 #
-function pchip{T<:Real}(xi::Array{T,1}, yi::Array{T,1}, x::T)
+function pchip(xi::Array{T,1}, yi::Array{T,1}, x::T) where {T<:Real}
     n = length(xi)
     if length(yi) != n
         error("Vectors 'xi', 'yi' must be of same length.")

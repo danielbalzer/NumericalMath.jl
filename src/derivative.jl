@@ -5,7 +5,7 @@
 
 #-- Numerical gradient of multivariate function ------------------------------
 #
-function fd_gradient{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
+function fd_gradient(f::Function, x0::Array{T,1}; h::Real = 0.0) where {T<:Real}
     local heps::Real = h
     if heps == 0.0; heps = eps()^(1.0/3.0); end
     local n::Int = length(x0)
@@ -33,7 +33,7 @@ function fd_gradient(f::Function, x0::Real; h::Real = 0.0)
 end
 
 
-function fd_jacobian{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
+function fd_jacobian(f::Function, x0::Array{T,1}; h::Real = 0.0) where {T<:Real}
     local heps::Real = h
     if heps == 0.0; heps = eps()^(1.0/3.0); end
 	local n = length(x0), m = length(f(x0))
@@ -48,7 +48,7 @@ function fd_jacobian{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
 end
 
 
-function fd_hessian{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
+function fd_hessian(f::Function, x0::Array{T,1}; h::Real = 0.0) where {T<:Real}
     local heps::Real = h
     if heps == 0.0; heps = eps()^(1.0/4.0); end
     local n::Int = length(x0)
@@ -79,7 +79,7 @@ function fd_hessian{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
 end
 
 
-function fd_laplacian{T<:Real}(f::Function, x0::Array{T,1}; h::Real = 0.0)
+function fd_laplacian(f::Function, x0::Array{T,1}; h::Real = 0.0) where {T<:Real}
     local heps::Real = h
     if heps == 0.0; heps = eps()^(1.0/4.0); end
     local n::Int = length(x0)

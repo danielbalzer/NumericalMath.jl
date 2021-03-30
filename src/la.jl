@@ -3,8 +3,8 @@
 ##
 
 
-function trisolve{T<:Number}(d0::Vector{T},
-                             d1::Vector{T},d2::Vector{T},rhs::Vector{T})
+function trisolve(d0::Vector{T},
+                             d1::Vector{T},d2::Vector{T},rhs::Vector{T})  where {T<:Number}
     local n = length(d0)
     if n < 3
         error("Length of 'a' must be greater or equal to 3.")
@@ -16,7 +16,7 @@ function trisolve{T<:Number}(d0::Vector{T},
         error("Vector 'rhs' must be of the same length as 'a'.")
     end
 
-    local x = copy(rhs), a = copy(d0), b = [d1, 0], d = copy(d2)
+    local x = copy(rhs); local a = copy(d0); local b = [d1, 0]; local d = copy(d2)
     for i = 1:(n-1)
         if d[i] != 0
             t = a[i]/d[i]

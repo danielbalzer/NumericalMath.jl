@@ -32,7 +32,7 @@ function arc_length(f::Function, a::Real, b::Real;
         X = [x y]
         dX = diff(X)
         A[k+1, 1] = sum(sqrt(sum(dX.^2, 2)))
-        for (l in 1:k)
+        for l in 1:k
             A[k+1, l+1] = (4^l * A[k+1, l] - A[k, l]) / (4^l - 1)
         end
         if abs(A[k+1, k+1] - A[k, k]) < tol && k > 3

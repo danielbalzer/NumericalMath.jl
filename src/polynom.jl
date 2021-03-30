@@ -36,7 +36,7 @@ function horner(p::Vector, x::Number)
 end
 
 
-function pzero{T<:Real}(p::Vector{T}, x0::T)
+function pzero(p::Vector{T}, x0::T) where {T<:Real}
     local x = x0, tol = 2*eps(x)
     px, dpx = horner(p, x)
     df = -px/dpx
